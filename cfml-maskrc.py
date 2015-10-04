@@ -65,7 +65,7 @@ for record in SeqIO.parse(args.aln, 'fasta'):
 	print 'Reading %s ... ' % record.id
 	regions = d.get(record.id, None)
 	newrec = MutableSeq(str(record.seq))
-	if regions != 'None':
+	if regions:
 		for a in regions:
 			start = int(a[0]) - 1
 			end = int(a[1])		
