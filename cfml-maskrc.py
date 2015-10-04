@@ -9,9 +9,9 @@ from argparse import RawTextHelpFormatter
 parser = argparse.ArgumentParser(
 	formatter_class=RawTextHelpFormatter,
 	description='Script to mask recombination from ClonalFrameML output',
-	usage='\n  %(prog)s --aln FASTA --out OUTFILE --symbol ? <CFML_PREFIX>')
-parser.add_argument('prefix', metavar='CFML_PREFIX', help='prefix used for CFML output files')
-parser.add_argument('--aln', metavar='FASTA', required=True, help='multiFASTA alignment used as input for CFML')
+	usage='\n  %(prog)s --aln FASTA --out OUTFILE <CFML_PREFIX>')
+parser.add_argument('prefix', metavar='CFML_PREFIX', help='prefix used for CFML output files (required)')
+parser.add_argument('--aln', metavar='FASTA', required=True, help='multiFASTA alignment used as input for CFML (required)')
 parser.add_argument('--out', metavar='OUTFILE', default='maskrc.aln', help='output file for masked alignment (default="maskrc.aln")')
 parser.add_argument('--symbol', metavar='?', default='?', help='symbol to use for masking (default="?")')
 parser.add_argument('--version', action='version', version=
@@ -27,6 +27,8 @@ cfmlRECOMB = cfmlPREFIX + ".importation_status.txt"
 outfile = args.out
 symbol = args.symbol
 
+import os
+import sys
 import csv
 from collections import defaultdict
 from ete2 import Tree
@@ -34,6 +36,19 @@ from Bio import SeqIO
 from Bio.Seq import Seq
 from Bio.Seq import MutableSeq
 from Bio.SeqRecord import SeqRecord
+
+# Functions
+def progexit(n):
+	sys.exit(n)
+
+def check_file(f):
+	if os.path.isfile(f) == False:
+		print 'ERROR: Cannot find "%s". Check CFML output files exist in this directory.' % f
+		progexit(1)
+
+# Check input files (output from CFML)
+check_file(cfmlTREE)
+check_file(cfmlRECOMB)
 
 # Import CFML files and identify recombinant regions
 d = defaultdict(list)
@@ -76,3 +91,4 @@ for record in SeqIO.parse(args.aln, 'fasta'):
 # Write masked alignment to file
 print 'Writing masked alignment to %s ... ' % outfile
 SeqIO.write(seqALN, outfile, 'fasta')
+progexit(0)
