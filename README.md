@@ -1,5 +1,6 @@
 # cfml-maskrc
-Masks recombinant regions in an alignment based on ClonalFrameML output
+Masks recombinant regions in an alignment based on ClonalFrameML output  
+Option to draw SVG of recombinant regions
 
 ## Author
 Jason Kwong (@kwongjc)  
