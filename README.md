@@ -32,6 +32,7 @@ optional arguments:
   --svg FILE           draw SVG output of recombinant regions and save as specified file
   --svgsize WIDExHIGH  specify width and height of SVG in pixels (default="800x600")
   --svgorder FILE      specify file containing list of taxa (1 per line) in desired order
+  --svgcolour COLOUR   specify colour of recombination regions in HEX format (default=black)
   --consensus          add consensus row of recombination hotspots
   --version            show program's version number and exit
 ```
@@ -47,6 +48,7 @@ optional arguments:
 * Draw SVG of recombinant regions `--svg FILE`
 * Specify size of SVG in pixels eg. 800x600 `--svgsize WIDTHxHEIGHT`
 * Specify desired order of taxa in SVG `--svgorder FILE`
+* Specify colour to show extant recombination `--svgcolour COLOUR`
 * Add consensus row of recombination hotspots to SVG `--consensus`
 
 ##Bugs
