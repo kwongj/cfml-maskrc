@@ -37,7 +37,7 @@ import os
 import sys
 import csv
 from collections import defaultdict
-from ete2 import Tree
+from ete3 import Tree
 from Bio import SeqIO
 from Bio.Seq import Seq
 from Bio.Seq import MutableSeq
@@ -53,6 +53,7 @@ def err(*args, **kwargs):
 	sys.exit(1);
 
 def check_file(f):
+	msg('Checking file: {}'.format(f))
 	if os.path.isfile(f) == False:
 		err('ERROR: Cannot find "{}". Check CFML output files exist in this directory.'.format(f))
 
@@ -68,10 +69,12 @@ t = Tree(cfmlTREE, format=1)
 
 # Set taxa order for SVG
 if args.svgorder:
+	msg('Setting taxa order using --svgorder {}'.format(args.svgorder));
 	with open(args.svgorder) as file:
 		for row in file:
 			leafLIST.append(row.rstrip())
 else:
+	msg('Setting taxa order using leaf order in {}'.format(cfmlTREE));
 	for leaf in t:
 		leafLIST.append(leaf.name)
 
