@@ -7,9 +7,9 @@ Jason Kwong (@kwongjc)
 GitHub: [kwongj](https://github.com/kwongj)  
 
 ## Dependencies
-* [Python 2.x](https://www.python.org/downloads/)
+* [Python 3.x](https://www.python.org/downloads/)
 * [BioPython](http://biopython.org/wiki/Main_Page)
-* [ete2](http://etetoolkit.org/)
+* [ete3](http://etetoolkit.org/)
 * [svgwrite](https://pypi.python.org/pypi/svgwrite/)
 
 ## Usage
@@ -51,10 +51,10 @@ optional arguments:
 * Specify colour to show extant recombination `--svgcolour COLOUR`
 * Add consensus row of recombination hotspots to SVG `--consensus`
 
-##Bugs
+## Bugs
 Please submit via the GitHub issues page: [https://github.com/kwongj/cfml-maskrc/issues](https://github.com/kwongj/cfml-maskrc/issues)  
 
-##Software Licence
+## Software Licence
 GPLv2: [https://github.com/kwongj/cfml-maskrc/blob/master/LICENSE](https://github.com/kwongj/cfml-maskrc/blob/master/LICENSE)
 
 ## Other links

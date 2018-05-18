@@ -1,8 +1,8 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 # Script by Jason Kwong
 # Script to mask recombination from CFML output and draw SVG of recombinant regions
 
-from __future__ import print_function
+#from __future__ import print_function
 
 # Usage
 import argparse
@@ -22,13 +22,9 @@ parser.add_argument('--svgsize', metavar='WIDExHIGH', default='800x600', help='s
 parser.add_argument('--svgorder', metavar='FILE', help='specify file containing list of taxa (1 per line) in desired order')
 parser.add_argument('--svgcolour', metavar='COLOUR', default='black', help='specify colour of recombination regions in HEX format (default=black)')
 parser.add_argument('--consensus', action='store_true', help='add consensus row of recombination hotspots')
-parser.add_argument('--version', action='version', version=
-	'=====================================\n'
-	'%(prog)s v0.2\n'
-	'Updated 22-Jul-2016 by Jason Kwong\n'
-	'Dependencies: Python 2.x, BioPython, ete2, svgwrite\n'
-	'=====================================')
+parser.add_argument('--version', action='version', version='v0.3')
 args = parser.parse_args()
+
 cfmlPREFIX = str(args.prefix)
 cfmlTREE = cfmlPREFIX + ".labelled_tree.newick"
 cfmlRECOMB = cfmlPREFIX + ".importation_status.txt"
@@ -39,7 +35,7 @@ import os
 import sys
 import csv
 from collections import defaultdict
-from ete2 import Tree
+from ete3 import Tree
 from Bio import SeqIO
 from Bio.Seq import Seq
 from Bio.Seq import MutableSeq
@@ -121,7 +117,7 @@ SeqIO.write(seqALN, outfile, 'fasta')
 
 # Write recombinant regions to file
 if args.regions:
-	with open(args.regions, 'wb') as csvfile:
+	with open(args.regions, 'w') as csvfile:
 		csvwriter = csv.writer(csvfile, delimiter='\t')
 		for k,v in d.items():
 			for b in v:
